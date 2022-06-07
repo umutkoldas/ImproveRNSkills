@@ -1,0 +1,6 @@
+module Pods_SplashScreen_SplashScreenTests {
+  umbrella header "Pods-SplashScreen-SplashScreenTests-umbrella.h"
+
+  export *
+  module * { export * }
+}
