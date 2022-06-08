@@ -1,9 +1,10 @@
-import React, {useEffect} from 'react';
+import React, { useEffect } from "react";
 
-import {SafeAreaView, StyleSheet} from 'react-native';
+import { SafeAreaView, StyleSheet } from "react-native";
 
-import SplashScreen from 'react-native-splash-screen';
-import SignInScreen from './src/Screens/SignInScreen';
+import SplashScreen from "react-native-splash-screen";
+import SignInScreen from "./src/Screens/SignInScreen";
+import SignUpScreen from "./src/Screens/SignUpScreen/index";
 
 const App = () => {
   useEffect(() => {
@@ -12,7 +13,7 @@ const App = () => {
 
   return (
     <SafeAreaView style={styles.root}>
-      <SignInScreen />
+      <SignUpScreen />
     </SafeAreaView>
   );
 };
@@ -20,7 +21,7 @@ const App = () => {
 const styles = StyleSheet.create({
   root: {
     flex: 1,
-    backgroundColor: '#F9FBFC',
+    backgroundColor: "#F9FBFC",
   },
 });
 

@@ -1,33 +1,34 @@
-import React, {useState} from 'react';
-import {View, Image, useWindowDimensions} from 'react-native';
-import Logo from '../../../assets/images/Login.png';
-import CustomInput from '../../Components/CustomInput/index';
-import CustomButton from '../../Components/CustomButton/index';
-import styles from './styles';
+import React, { useState } from "react";
+import { View, Image, useWindowDimensions } from "react-native";
+import Logo from "../../../assets/images/Login.png";
+import CustomInput from "../../Components/CustomInput/index";
+import CustomButton from "../../Components/CustomButton/index";
+import styles from "./styles";
+import SocialSignInButton from "../../Components/SocialSignInButton";
 
 const SignInScreen = () => {
-  const {height} = useWindowDimensions();
-  const [username, setUsername] = useState('');
-  const [password, setPassword] = useState('');
+  const { height } = useWindowDimensions();
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
   const onSignInPress = () => {
-    return console.log('onSignInPress');
+    return console.log("onSignInPress");
   };
   const onForgetPasswordPress = () => {
-    return console.log('ForgetPasswordPress');
+    return console.log("ForgetPasswordPress");
   };
   const onSignInwithFacebook = () => {
-    console.log('onSignInwithFacebook');
+    console.log("onSignInwithFacebook");
   };
   const onSignInwithGoogle = () => {
-    console.log('onSignInwithGoogle');
+    console.log("onSignInwithGoogle");
   };
   const onSignInwithApple = () => {
-    console.log('onSignInwithApple');
+    console.log("onSignInwithApple");
   };
   return (
     <View style={styles.root}>
       <Image
-        style={[styles.logo, {height: height * 0.3}]}
+        style={[styles.logo, { height: height * 0.3 }]}
         source={Logo}
         resizeMode="contain"
       />
@@ -51,24 +52,7 @@ const SignInScreen = () => {
         />
       </View>
       <View style={styles.viewSecondary}>
-        <CustomButton
-          bgColor="#E7EAF4"
-          fgColor="#4765A9"
-          onPress={onSignInwithFacebook}
-          text="Sign In with Facebook"
-        />
-        <CustomButton
-          bgColor="#FAE9EA"
-          fgColor="#DD4D44"
-          onPress={onSignInwithGoogle}
-          text="Sign In with Google"
-        />
-        <CustomButton
-          bgColor="#e3e3e3"
-          fgColor="#363636"
-          onPress={onSignInwithApple}
-          text="Sign In with Apple"
-        />
+        <SocialSignInButton />
       </View>
       <CustomButton
         bgColor="white"
