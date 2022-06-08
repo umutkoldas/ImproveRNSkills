@@ -1,27 +1,36 @@
 import React, { useState } from "react";
-import { View, Text } from "react-native";
+import {
+  View,
+  Text,
+  TouchableOpacity,
+  Pressable,
+  Keyboard,
+} from "react-native";
 import CustomInput from "../../Components/CustomInput/index";
 import CustomButton from "../../Components/CustomButton/index";
 import styles from "./styles";
 import SocialSignInButton from "../../Components/SocialSignInButton/index";
+import { useNavigation } from "@react-navigation/native";
 
-const SignInScreen = () => {
+const SignUpScreen = () => {
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [passwordRepeat, setPasswordRepeat] = useState("");
 
+  const navigation = useNavigation();
+
   const onRegisterPress = () => {
-    return console.log("onRegisterPress");
+    return navigation.navigate("ConfirmEmail");
   };
   const onTermsOfUsePressed = () => {
-    console.log("onTermsOfUsePressed");
+    return navigation.navigate("ConfirmEmail");
   };
   const onSignInPress = () => {
-    console.log("onSignInPress");
+    return navigation.navigate("SignIn");
   };
   return (
-    <View style={styles.root}>
+    <Pressable onPress={() => Keyboard.dismiss()} style={styles.root}>
       <Text style={styles.title}>Create an account</Text>
       <View style={styles.viewSecondary}>
         <CustomInput
@@ -29,7 +38,12 @@ const SignInScreen = () => {
           value={username}
           setValue={setUsername}
         />
-        <CustomInput placeholder="Email" value={email} setValue={setEmail} />
+        <CustomInput
+          keyboardType="email-address"
+          placeholder="Email"
+          value={email}
+          setValue={setEmail}
+        />
         <CustomInput
           placeholder="Password"
           value={password}
@@ -43,19 +57,20 @@ const SignInScreen = () => {
           secureTextEntry
         />
         <CustomButton onPress={onRegisterPress} text="Register" />
-
-        <Text onPress={onTermsOfUsePressed} style={styles.text}>
-          Bu registering, you confirm that you accept our{" "}
-          <Text style={styles.link}>Terms of Use</Text> and{" "}
-          <Text style={styles.link}>Privacy Policy</Text>
-        </Text>
+        <TouchableOpacity onPress={onTermsOfUsePressed}>
+          <Text style={styles.text}>
+            Bu registering, you confirm that you accept our{" "}
+            <Text style={styles.link}>Terms of Use</Text> and{" "}
+            <Text style={styles.link}>Privacy Policy</Text>
+          </Text>
+        </TouchableOpacity>
       </View>
       <SocialSignInButton />
-      <Text onPress={onSignInPress} style={styles.text}>
-        Have an account ? Sign in
-      </Text>
-    </View>
+      <TouchableOpacity onPress={onSignInPress}>
+        <Text style={styles.text}>Have an account ? Sign in</Text>
+      </TouchableOpacity>
+    </Pressable>
   );
 };
 
-export default SignInScreen;
+export default SignUpScreen;

@@ -1,25 +1,32 @@
-import {StyleSheet} from 'react-native';
+import { StyleSheet } from "react-native";
 
 const styles = StyleSheet.create({
   buttonView: {
-    width: '100%',
+    width: "100%",
     padding: 15,
     marginVertical: 5,
-    alignItems: 'center',
+    alignItems: "center",
     borderRadius: 5,
   },
   buttonView_PRIMARY: {
-    backgroundColor: '#3B71F3',
+    backgroundColor: "#3B71F3",
+  },
+  buttonView_SECONDARY: {
+    borderColor: "#3B71F3",
+    borderWidth: 1,
   },
   buttonView_TERTIARY: {
-    backgroundColor: 'white',
+    backgroundColor: "white",
   },
   buttonText: {
-    fontWeight: 'bold',
-    color: 'white',
+    fontWeight: "bold",
+    color: "white",
   },
   buttonText_TERTIARY: {
-    color: 'grey',
+    color: "grey",
+  },
+  buttonText_SECONDARY: {
+    color: "#3B71F3",
   },
 });
 export default styles;

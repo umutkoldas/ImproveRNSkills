@@ -1,32 +1,35 @@
 import React, { useState } from "react";
-import { View, Image, useWindowDimensions } from "react-native";
+import {
+  View,
+  Image,
+  useWindowDimensions,
+  Pressable,
+  Keyboard,
+} from "react-native";
 import Logo from "../../../assets/images/Login.png";
 import CustomInput from "../../Components/CustomInput/index";
 import CustomButton from "../../Components/CustomButton/index";
 import styles from "./styles";
 import SocialSignInButton from "../../Components/SocialSignInButton";
+import { useNavigation } from "@react-navigation/native";
 
 const SignInScreen = () => {
+  const navigation = useNavigation();
   const { height } = useWindowDimensions();
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+
   const onSignInPress = () => {
-    return console.log("onSignInPress");
+    return navigation.navigate("Home");
   };
   const onForgetPasswordPress = () => {
-    return console.log("ForgetPasswordPress");
+    return navigation.navigate("ForgetPassword");
   };
-  const onSignInwithFacebook = () => {
-    console.log("onSignInwithFacebook");
-  };
-  const onSignInwithGoogle = () => {
-    console.log("onSignInwithGoogle");
-  };
-  const onSignInwithApple = () => {
-    console.log("onSignInwithApple");
+  const onSignUpPress = () => {
+    return navigation.navigate("SignUp");
   };
   return (
-    <View style={styles.root}>
+    <Pressable onPress={() => Keyboard.dismiss()} style={styles.root}>
       <Image
         style={[styles.logo, { height: height * 0.3 }]}
         source={Logo}
@@ -57,10 +60,10 @@ const SignInScreen = () => {
       <CustomButton
         bgColor="white"
         fgColor="black"
-        onPress={onSignInwithApple}
+        onPress={onSignUpPress}
         text="Don't have an Account ? Create one"
       />
-    </View>
+    </Pressable>
   );
 };
 
