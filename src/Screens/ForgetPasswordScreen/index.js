@@ -10,28 +10,34 @@ import CustomInput from "../../Components/CustomInput/index";
 import CustomButton from "../../Components/CustomButton/index";
 import styles from "./style";
 import { useNavigation } from "@react-navigation/native";
+import { useForm } from "react-hook-form";
 
 const ForgetPasswordScreen = () => {
-  const [username, setUsername] = useState("");
+  const { control, handleSubmit } = useForm();
+
   const navigation = useNavigation();
 
-  const onSendPress = () => {
+  const onSendPress = (data) => {
+    console.log(data);
     return navigation.navigate("NewPassword");
   };
 
   const onSignInPress = () => {
     return navigation.navigate("SignIn");
   };
- 
+
   return (
     <Pressable onPress={() => Keyboard.dismiss()} style={styles.root}>
       <Text style={styles.title}>Reset Your Password</Text>
       <CustomInput
+        name="Username"
+        control={control}
         placeholder="Username"
-        value={username}
-        setValue={setUsername}
+        rules={{
+          required: "Username is required",
+        }}
       />
-      <CustomButton onPress={onSendPress} text="Send" />
+      <CustomButton onPress={handleSubmit(onSendPress)} text="Send" />
       <TouchableOpacity onPress={onSignInPress}>
         <Text style={styles.text}>Back to Sign In</Text>
       </TouchableOpacity>

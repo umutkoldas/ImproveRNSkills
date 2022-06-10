@@ -10,14 +10,15 @@ import CustomInput from "../../Components/CustomInput/index";
 import CustomButton from "../../Components/CustomButton/index";
 import styles from "./styles";
 import { useNavigation } from "@react-navigation/native";
+import { useForm } from "react-hook-form";
 
 const NewPasswordScreen = () => {
-  const [code, setCode] = useState("");
-  const [newPassword, setNewPassword] = useState("");
+  const { control, handleSubmit } = useForm();
 
   const navigation = useNavigation();
 
-  const onSubmitPress = () => {
+  const onSubmitPress = (data) => {
+    console.log(data);
     return navigation.navigate("Home");
   };
 
@@ -28,13 +29,26 @@ const NewPasswordScreen = () => {
   return (
     <Pressable onPress={() => Keyboard.dismiss()} style={styles.root}>
       <Text style={styles.title}>Reset Your Password</Text>
-      <CustomInput placeholder="Code" value={code} setValue={setCode} />
       <CustomInput
-        placeholder="Enter your new password"
-        value={newPassword}
-        setValue={setNewPassword}
+        placeholder="Code"
+        name="Code"
+        control={control}
+        rules={{ required: "Code is required" }}
       />
-      <CustomButton onPress={onSubmitPress} text="Submit" />
+      <CustomInput
+        name="Password"
+        control={control}
+        placeholder="Enter your new password"
+        secureTextEntry
+        rules={{
+          required: "Password is required",
+          minLength: {
+            value: 8,
+            message: "Password should be minimum 8 characters long",
+          },
+        }}
+      />
+      <CustomButton onPress={handleSubmit(onSubmitPress)} text="Submit" />
       <TouchableOpacity onPress={onSignInPress}>
         <Text style={styles.text}>Back to Sign In</Text>
       </TouchableOpacity>

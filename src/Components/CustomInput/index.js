@@ -1,26 +1,50 @@
-import { View, TextInput } from "react-native";
+import { View, TextInput, Text } from "react-native";
 import React from "react";
 import styles from "./styles";
+import { Controller } from "react-hook-form";
 
 const CustomInput = ({
+  control,
+  name,
+  rules = {},
   placeholder,
-  value,
-  setValue,
   secureTextEntry,
   keyboardType,
-  bColor,
 }) => {
   return (
-    <View style={[styles.container, bColor ? { borderColor: "red" } : {}]}>
-      <TextInput
-        value={value}
-        onChangeText={setValue}
-        style={styles.input}
-        placeholder={placeholder}
-        secureTextEntry={secureTextEntry}
-        keyboardType={keyboardType}
-      />
-    </View>
+    <Controller
+      control={control}
+      name={name}
+      rules={rules}
+      render={({
+        field: { value, onChange, onBlur },
+        fieldState: { error },
+      }) => (
+        <>
+          <View
+            style={[
+              styles.container,
+              { borderColor: error ? "red" : "#e8e8e8" },
+            ]}
+          >
+            <TextInput
+              value={value}
+              onChangeText={onChange}
+              onBlur={onBlur}
+              placeholder={placeholder}
+              secureTextEntry={secureTextEntry}
+              style={styles.input}
+              keyboardType={keyboardType}
+            />
+          </View>
+          {error && (
+            <Text style={{ color: "red", alignSelf: "stretch" }}>
+              {error.message || "Error"}
+            </Text>
+          )}
+        </>
+      )}
+    />
   );
 };
 
